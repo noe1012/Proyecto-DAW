@@ -20,8 +20,10 @@ app.use(express.json());
 
 connectDB();
 
-sequelize.sync({ alter: true })
-  .then(() => console.log("📦 Tablas sincronizadas correctamente"))
+// Intentamos sincronizar las tablas sin usar `alter` para evitar ALTER TABLE
+// que puede fallar si la base de datos tiene índices/constraints inconsistentes.
+sequelize.sync()
+  .then(() => console.log("📦 Tablas sincronizadas correctamente)."))
   .catch(err => console.error("❌ Error al sincronizar las tablas:", err));
 
 // 👉 Usar las rutas

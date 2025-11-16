@@ -1,28 +1,53 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Eventos from "./pages/Eventos";
-import Perfil from "./pages/Perfil";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Layout from "./components/Layout.jsx";
+import Home from "./pages/Home.jsx";
+import Eventos from "./pages/Eventos.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import Perfil from "./pages/Perfil.jsx";
 import PanelNegocio from "./pages/PanelNegocio";
+import ProtectedRoute from "./components/ProtectedRoute";
+import EventDetail from "./pages/EventDetail.jsx";
+import MisEventos from "./pages/MisEventos.jsx";
 
-function App() {
+export default function App() {
+
   return (
-    <BrowserRouter>
-      <Navbar />
-      <div className="p-6">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/eventos" element={<Eventos />} />
-          <Route path="/perfil" element={<Perfil />} />
-          <Route path="/panel-negocio" element={<PanelNegocio />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/eventos" element={<Eventos />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        
+        <Route
+          path="/perfil"
+          element={
+            <ProtectedRoute>
+              <Perfil />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/panel-negocio"
+          element={
+            <ProtectedRoute>
+              <PanelNegocio />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mis-eventos"
+          element={
+            <ProtectedRoute>
+              <MisEventos />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/eventos/:id" element={<EventDetail />} />
+        {/* fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+    </Routes>
   );
 }
-
-export default App;

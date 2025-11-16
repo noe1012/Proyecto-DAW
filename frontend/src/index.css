@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-gray-50 text-gray-800;
+/* --- BASE (puedes poner body aquí) --- */
+@layer base {
+  body {
+    @apply bg-gradient-to-b from-white to-gray-50 text-gray-800;
+    font-feature-settings: "cv02","cv03","cv04","cv11";
+  }
+}
+
+/* --- COMPONENTS (aquí van las clases con @apply) --- */
+@layer components {
+  .container-app {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Botón primario reutilizable */
+  .btn-brand {
+    @apply inline-flex items-center justify-center rounded-lg bg-brand px-4 py-2
+           font-medium text-white shadow-sm transition hover:bg-brand-dark
+           focus:outline-none focus:ring-2 focus:ring-brand/40;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-lg border border-gray-200
+           bg-white px-4 py-2 font-medium text-gray-700 shadow-sm transition
+           hover:border-gray-300 hover:bg-gray-50;
+  }
+}
+@layer components {
+  .btn-brand { @apply bg-brand text-white font-medium hover:bg-brand-dark transition shadow-sm; }
+  .chip { @apply px-3 py-1.5 rounded-full border bg-white text-sm hover:bg-gray-50; }
+  .chip-active { @apply bg-brand text-white border-brand; }
 }

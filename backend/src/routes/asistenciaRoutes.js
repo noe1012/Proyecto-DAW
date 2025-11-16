@@ -1,12 +1,12 @@
 import express from "express";
-import { verificarToken, verificarRol } from "../middleware/authMiddleware.js";
+import { auth, verificarRol } from "../middleware/authMiddleware.js";
 import { Asistencia } from "../models/Asistencia.js";
 import { Evento } from "../models/Evento.js";
 
 const router = express.Router();
 
 // 🔹 Registrar asistencia (solo usuarios normales)
-router.post("/registrar", verificarToken, verificarRol("user"), async (req, res) => {
+router.post("/registrar", auth, verificarRol("user"), async (req, res) => {
   try {
     const { eventoId } = req.body;
 
@@ -28,7 +28,7 @@ router.post("/registrar", verificarToken, verificarRol("user"), async (req, res)
 });
 
 // 🔹 Ver asistentes de un evento (para business o admin)
-router.get("/evento/:id", verificarToken, async (req, res) => {
+router.get("/evento/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
     const evento = await Evento.findByPk(id, { include: ["Usuarios"] });
