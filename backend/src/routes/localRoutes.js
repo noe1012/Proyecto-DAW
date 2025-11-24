@@ -3,7 +3,7 @@ import { Local } from "../models/Local.js";
 
 const router = express.Router();
 
-// 🔹 Listar locales
+// Listar locales
 router.get("/", async (req, res) => {
   try {
     const locales = await Local.findAll();

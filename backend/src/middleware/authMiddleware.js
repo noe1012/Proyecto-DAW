@@ -16,7 +16,7 @@ export const auth = (req, res, next) => {
     const token = parts.length === 2 ? parts[1] : authHeader;
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    // 👇 aquí dejamos disponible req.user y req.usuario para compatibilidad
+    // req.user y req.usuario para compatibilidad
     req.user = { id: decoded.id, rol: decoded.rol };
     req.usuario = { id: decoded.id, rol: decoded.rol };
     next();

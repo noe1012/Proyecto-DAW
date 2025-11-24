@@ -8,7 +8,7 @@ import { auth } from "../middleware/authMiddleware.js";
 dotenv.config();
 const router = express.Router();
 
-// 🔹 Registro de usuario
+// Registro de usuario
 router.post("/register", async (req, res) => {
   try {
     const { nombre, email, password, rol } = req.body;
@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
       rol,
     });
 
-    // 👇 Si el usuario es un negocio, crear su local automáticamente
+    //  Si el usuario es un negocio, crear su local automáticamente
     if (rol === "business") {
       const { Local } = await import("../models/Local.js");
 
@@ -60,7 +60,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// 🔹 Login de usuario
+// Login de usuario
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;

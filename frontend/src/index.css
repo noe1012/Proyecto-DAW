@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- BASE (puedes poner body aquí) --- */
+/* --- BASE *-- */
 @layer base {
   body {
     @apply bg-gradient-to-b from-white to-gray-50 text-gray-800;
@@ -10,7 +10,7 @@
   }
 }
 
-/* --- COMPONENTS (aquí van las clases con @apply) --- */
+/* --- COMPONENTS --- */
 @layer components {
   .container-app {
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;

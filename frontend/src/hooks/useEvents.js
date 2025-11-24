@@ -12,7 +12,6 @@ export default function useEvents(initialFilters = {}) {
     setLoading(true);
     setError(null);
 
-    // Puedes construir querystring desde filters
     const params = new URLSearchParams();
     if (filters.q) params.set("q", filters.q);
     if (filters.when) params.set("when", filters.when); // "today" | "week"

@@ -20,7 +20,7 @@ export default function Events() {
     return () => { active = false; };
   }, []);
 
-  // Filtro en cliente (rápido). Más adelante movemos al backend con query params.
+  // Filtro en cliente (rápido)
   const items = useMemo(() => {
     let list = [...raw];
     if (filters.q) {
@@ -67,7 +67,7 @@ export default function Events() {
           </div>
         ) : filters.view === "map" ? (
           <div className="h-[420px] rounded-xl border flex items-center justify-center text-gray-500 bg-gray-50">
-            🗺️ Vista mapa (placeholder). Luego integramos Leaflet/Google Maps con los locales.
+             Vista mapa (placeholder). Luego integramos Leaflet/Google Maps con los locales.
           </div>
         ) : filters.view === "list" ? (
           <ul className="divide-y rounded-xl border bg-white">

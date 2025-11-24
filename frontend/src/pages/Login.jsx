@@ -36,7 +36,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      // Tu backend debería devolver { token, usuario? }
+      // backend debería devolver { token, usuario? }
       const { data } = await api.post("/usuarios/login", { email, password });
       const { token, usuario } = data;
 
@@ -49,7 +49,7 @@ export default function Login() {
       let me = usuario;
       if (!me) {
         const meRes = await api.get("/usuarios/me");
-        me = meRes.data; // <- usuario desde el backend
+        me = meRes.data; //  usuario desde el backend
       }
 
       // 3) Subimos el usuario al contexto

@@ -20,7 +20,7 @@ const NavItem = ({ to, children }) => (
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { user, logout } = useAuth(); // 👈 acceder al contexto
+  const { user, logout } = useAuth(); // acceder al contexto
   const isBusiness = user?.rol === "business";
   const navigate = useNavigate();
 

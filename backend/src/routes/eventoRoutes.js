@@ -6,7 +6,7 @@ import { auth, verificarRol } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 
-// 🔹 Crear evento automáticamente asociado al local del negocio
+// Crear evento automáticamente asociado al local del negocio
 router.post("/create", auth, verificarRol("business"), async (req, res) => {
   try {
     const { titulo, descripcion, fecha } = req.body;
@@ -36,7 +36,7 @@ router.post("/create", auth, verificarRol("business"), async (req, res) => {
   }
 });
 
-// 🔹 Listar todos los eventos (abierto)
+// Listar todos los eventos (abierto)
 router.get("/", async (req, res) => {
   try {
     const eventos = await Evento.findAll({ include: Local });
@@ -46,7 +46,7 @@ router.get("/", async (req, res) => {
     res.status(500).json({ msg: "Error al obtener eventos" });
   }
 });
-// 🔹 Listar eventos del local del negocio autenticado
+// Listar eventos del local del negocio autenticado
 router.get("/mios", auth, verificarRol("business"), async (req, res) => {
   try {
     // Buscar el local asociado al usuario
@@ -90,7 +90,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// 🔹 Actualizar un evento (solo para el negocio propietario)
+//  Actualizar un evento (solo para el negocio propietario)
 router.put("/:id", auth, verificarRol("business"), async (req, res) => {
   try {
     const { id } = req.params;
@@ -114,7 +114,7 @@ router.put("/:id", auth, verificarRol("business"), async (req, res) => {
   }
 });
 
-// 🔹 Eliminar un evento (solo para el negocio propietario)
+// Eliminar un evento (solo para el negocio propietario)
 router.delete("/:id", auth, verificarRol("business"), async (req, res) => {
   try {
     const { id } = req.params;

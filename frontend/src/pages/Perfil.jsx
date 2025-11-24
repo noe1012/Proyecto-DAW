@@ -45,7 +45,7 @@ export default function Perfil() {
         const { data } = await api.put("/usuarios/me", payload);
         setMe(data);
         setUserAfterLogin(data);
-        setMsg("Perfil actualizado ✅");
+        setMsg("Perfil actualizado con éxito.");
         setForm({ nombre: data?.nombre || "", password: "" });
       }
     } catch (e) {

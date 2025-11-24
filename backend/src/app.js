@@ -20,11 +20,9 @@ app.use(express.json());
 
 connectDB();
 
-// Intentamos sincronizar las tablas sin usar `alter` para evitar ALTER TABLE
-// que puede fallar si la base de datos tiene índices/constraints inconsistentes.
 sequelize.sync()
   .then(() => console.log("📦 Tablas sincronizadas correctamente)."))
-  .catch(err => console.error("❌ Error al sincronizar las tablas:", err));
+  .catch(err => console.error(" Error al sincronizar las tablas:", err));
 
 // 👉 Usar las rutas
 app.use("/api/usuarios", usuarioRoutes);
@@ -34,7 +32,7 @@ app.use("/api/asistencias", asistenciaRoutes);
 
 
 app.get("/", (req, res) => {
-  res.send("🚀 GlowNite API funcionando y conectada");
+  res.send(" GlowNite API funcionando y conectada");
 });
 
 const PORT = process.env.PORT || 4000;

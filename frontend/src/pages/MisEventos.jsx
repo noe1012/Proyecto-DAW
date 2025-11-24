@@ -101,7 +101,6 @@ export default function MisEventos() {
         </ul>
       )}
 
-      {/* Form modal (simple) */}
       {showForm && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md">
@@ -118,8 +117,7 @@ export default function MisEventos() {
           </div>
         </div>
       )}
-
-      {/* Attendees modal */}
+      
       {showAttModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md">

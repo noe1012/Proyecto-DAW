@@ -20,7 +20,7 @@ export default function Register() {
       const { data } = await api.post("/usuarios/register", {
         nombre, email, password, rol
       });
-      // si tu backend devuelve {token, usuario}, úsalo tal cual.
+      // si backend devuelve {token, usuario}, se usa tal cual.
       // si solo confirma el registro, puedes redirigir a /login:
       if (data?.token && data?.usuario) {
         localStorage.setItem("token", data.token);

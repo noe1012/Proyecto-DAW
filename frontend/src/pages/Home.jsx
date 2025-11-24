@@ -16,7 +16,7 @@ export default function Home() {
       {/* Hero */}
       <div className="text-center">
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
-          Bienvenido a <span className="text-brand">GlowNite</span> <span className="inline-block">✨</span>
+          Bienvenido a <span className="text-brand">GlowNite</span>
         </h1>
         <p className="mt-3 text-gray-600">
           Descubre eventos y locales, y apúntate a planes cerca de ti.
@@ -47,7 +47,7 @@ export default function Home() {
           onClick={toggleFree}
           className={`rounded-full px-3 py-1 text-sm ${filters.free ? "bg-brand text-white" : "bg-gray-100 text-gray-700"}`}
         >Gratis</button>
-        {/* (Más chips más adelante: Cerca, Música, Tech, etc.) */}
+        {/* (Más chips más adelante: Cerca, Música, Tech, etc. Se añadirá en el futuro) */}
       </div>
 
       {/* Grid de eventos */}

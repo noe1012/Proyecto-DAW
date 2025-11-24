@@ -5,7 +5,7 @@ import { Evento } from "../models/Evento.js";
 
 const router = express.Router();
 
-// 🔹 Registrar asistencia (solo usuarios normales)
+//  Registrar asistencia (solo usuarios normales)
 router.post("/registrar", auth, verificarRol("user"), async (req, res) => {
   try {
     const { eventoId } = req.body;
@@ -27,7 +27,7 @@ router.post("/registrar", auth, verificarRol("user"), async (req, res) => {
   }
 });
 
-// 🔹 Ver asistentes de un evento (para business o admin)
+//  Ver asistentes de un evento (para business o admin)
 router.get("/evento/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
