@@ -18,6 +18,8 @@ function useFavorites() {
     const next = isFav(id) ? favs.filter((x) => x !== id) : [...favs, id];
     setFavs(next);
     localStorage.setItem(key, JSON.stringify(next));
+    // Notify other parts of the app that favorites changed
+    try { window.dispatchEvent(new CustomEvent('favorites:changed', { detail: next })); } catch {};
   };
 
   return { favs, isFav, toggle };

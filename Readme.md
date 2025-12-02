@@ -109,13 +109,13 @@ Accede al frontend en `http://localhost:5173` (puerto de Vite por defecto) y al 
 ---
 
 Si quieres, puedo añadir más secciones al README: diagramas, documentación de la base de datos (ER), ejemplos de uso de la API con `curl` o Postman, o pasos para desplegar en producción.
-# 🌟 GlowNite
+#  GlowNite
 
 Plataforma web para conectar usuarios y locales de ocio nocturno.
 
-## 🧱 Estructura del proyecto
+## Estructura del proyecto
 
-## 🚀 Instalación
+## Instalación
 1️⃣ Clonar el repositorio:
 ```bash
 git clone https://github.com/TU_USUARIO/glownite.git

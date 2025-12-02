@@ -54,6 +54,9 @@ export default function EventDetail() {
 
       alert(data?.msg || "Te has apuntado al evento");
 
+      // Notify other parts of the app (perfil) that asistencias changed
+      try { window.dispatchEvent(new CustomEvent('asistencias:changed', { detail: { eventoId: id } })); } catch {}
+
       // Actualizar contador localmente (si existe alguno)
       setEvento((prev) => {
         if (!prev) return prev;

@@ -9,6 +9,7 @@ import PanelNegocio from "./pages/PanelNegocio";
 import ProtectedRoute from "./components/ProtectedRoute";
 import EventDetail from "./pages/EventDetail.jsx";
 import MisEventos from "./pages/MisEventos.jsx";
+import Locales from "./pages/Locales.jsx";
 
 export default function App() {
 
@@ -45,6 +46,7 @@ export default function App() {
           }
         />
         <Route path="/eventos/:id" element={<EventDetail />} />
+        <Route path="/locales" element={<Locales />} />
         {/* fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>

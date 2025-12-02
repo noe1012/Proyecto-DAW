@@ -42,6 +42,7 @@ export default function Navbar() {
       <div className="hidden md:flex items-center gap-1">
         <NavItem to="/">Inicio</NavItem>
         <NavItem to="/eventos">Eventos</NavItem>
+        <NavItem to="/locales">Locales</NavItem>
 
           {user ? (
           <>
@@ -114,6 +115,7 @@ export default function Navbar() {
             <Link to="/eventos" className="btn-brand mt-2 w-full text-center">
               Explorar
             </Link>
+            <Link to="/locales" className="btn-outline mt-2 w-full text-center">Locales</Link>
           </div>
         </div>
       )}

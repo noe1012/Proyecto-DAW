@@ -10,7 +10,12 @@ Local.belongsTo(Usuario);
 Local.hasMany(Evento);
 Evento.belongsTo(Local);
 
-Usuario.belongsToMany(Evento, { through: Asistencia });
-Evento.belongsToMany(Usuario, { through: Asistencia });
+// Relaciones para Asistencia: belongsTo son necesarios para que include funcione
+Asistencia.belongsTo(Usuario, { foreignKey: "UsuarioId" });
+Asistencia.belongsTo(Evento, { foreignKey: "EventoId" });
+
+// Relación muchos-a-muchos (sin duplicar hasMany/belongsToMany)
+Usuario.belongsToMany(Evento, { through: Asistencia, foreignKey: "UsuarioId", otherKey: "EventoId" });
+Evento.belongsToMany(Usuario, { through: Asistencia, foreignKey: "EventoId", otherKey: "UsuarioId" });
 
 export { Usuario, Local, Evento, Asistencia };

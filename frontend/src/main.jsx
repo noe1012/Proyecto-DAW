@@ -14,6 +14,7 @@ import Footer from "./components/Footer.jsx";
 import "./index.css";
 import EventDetail from "./pages/EventDetail.jsx";
 import MisEventos from "./pages/MisEventos.jsx";
+import Locales from "./pages/Locales.jsx";
 
 
 function AppRoutes() {
@@ -29,6 +30,7 @@ function AppRoutes() {
         <Route path="/panel-negocio" element={<PanelNegocio />} />
         <Route path="/eventos/:id" element={<EventDetail />} />
         <Route path="/mis-eventos" element={<MisEventos />} />
+        <Route path="/locales" element={<Locales />} />
         {/* fallback */}
         <Route path="*" element={<Home />} />
       </Routes>

@@ -5,6 +5,7 @@ import useAuth from "../hooks/useAuth";
 export default function Perfil() {
   const { user, setUserAfterLogin } = useAuth();
   const [me, setMe] = useState(user);
+  const [misAsistencias, setMisAsistencias] = useState([]);
   const [form, setForm] = useState({ nombre: "", password: "" });
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState("");
@@ -20,12 +21,35 @@ export default function Perfil() {
         setForm(f => ({ ...f, nombre: data?.nombre || "" }));
         // sincroniza con el contexto
         setUserAfterLogin(data);
+        // cargar asistencias del usuario
+        try {
+          const res = await api.get("/asistencias/mias");
+          if (mounted) setMisAsistencias(res.data || []);
+        } catch (e) {
+          console.error("Error loading asistencias:", e);
+        }
       } catch (e) {
         console.error(e);
       }
     };
     load();
-    return () => { mounted = false; };
+    
+    // listen to updates from other components
+    const onAsist = () => {
+      (async () => {
+        try {
+          const res = await api.get("/asistencias/mias");
+          if (mounted) setMisAsistencias(res.data || []);
+        } catch (e) { console.error(e); }
+      })();
+    };
+
+    window.addEventListener('asistencias:changed', onAsist);
+
+    return () => { 
+      mounted = false; 
+      window.removeEventListener('asistencias:changed', onAsist); 
+    };
   }, [setUserAfterLogin]);
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -113,13 +137,32 @@ export default function Perfil() {
       </div>
 
       {/* Extra para propietarios de local */}
-      {me.rol === "local" && (
+      {me.rol === "business" && (
         <div className="mt-8 rounded-xl border bg-white p-5 shadow-sm">
           <h2 className="font-semibold text-lg mb-3">Gestión de local</h2>
           <p className="text-sm text-gray-600 mb-3">
             Como usuario <b>local</b> puedes administrar tu ficha y eventos.
           </p>
           <a href="/panel" className="btn-outline">Ir al Panel</a>
+        </div>
+      )}
+
+      {/* Asistencias (solo para usuarios) */}
+      {me.rol === "user" && (
+        <div className="mt-8 rounded-xl border bg-white p-5 shadow-sm">
+          <h2 className="font-semibold text-lg mb-3">Eventos a los que te has apuntado</h2>
+          {misAsistencias.length === 0 ? (
+            <p className="text-gray-500">No te has apuntado a ningún evento.</p>
+          ) : (
+            <ul className="divide-y">
+              {misAsistencias.map(ev => (
+                <li key={ev.id} className="p-3">
+                  <div className="font-semibold">{ev.titulo}</div>
+                  <div className="text-sm text-gray-500">{new Date(ev.fecha).toLocaleDateString()} • {ev.Local?.nombre}</div>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
     </div>
